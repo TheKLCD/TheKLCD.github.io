@@ -1,1 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
+html{
+    background-color: #0f0f0f;
+    color: #3e5480;
+}
+
+head{
+    display: inline-block;
+}
+
+#portrait{
+    display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#picdescription{
+    background-color: rgba(222, 227, 247, 0.68);
+    display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 60px;
+    color: black;
+    text-align: center;
+}
+
+p{
+    margin: 0px;
+}
+
+h1{
+    font-family: 'Courgette', cursive;
+    text-align: center;
+}
