@@ -1,0 +1,18 @@
+html {
+    height: 150%;
+    background-image: linear-gradient(to bottom right, #251a38, #000000);
+    background-size: cover;
+}
+
+a:link, a:visited{
+    color: #6168cf;
+    text-decoration: none;
+}
+
+a:hover{
+    color: orange;
+}
+
+a:active{
+    color: yellow;
+}
