@@ -68,7 +68,7 @@ class GameScreen extends Phaser.Scene{
             }
 
             if(!gameState.ateApple){
-                gameState.board[gameState.player.position[gameState.player.position.length-1][0]][gameState.player.position[gameState.player.position.length-1][1]] = 0;
+                gameState.board[gameState.player.position[0][0]][gameState.player.position[0][1]] = 0;
                 gameState.player.position.shift();
                 gameState.player.render[0].destroy();
                 gameState.player.render.shift();
@@ -103,7 +103,7 @@ class GameScreen extends Phaser.Scene{
                 gameState.appleRender.setPosition(gameState.applePosition[1]*30, gameState.applePosition[0]*30);
             }
 
-            gameState.board[gameState.player.position[0][0]][gameState.player.position[0][1]] = 1;
+            gameState.board[gameState.player.position[gameState.player.position.length-1][0]][gameState.player.position[[gameState.player.position.length-1]][1]] = 1;
 
             if(gameState.player.position[gameState.player.position.length-1][0] == 20 || gameState.player.position[gameState.player.position.length-1][0] == -1 || gameState.player.position[gameState.player.position.length-1][1] == 20 || gameState.player.position[gameState.player.position.length-1][1] == -1){
                 gameState.gameOver = true;
