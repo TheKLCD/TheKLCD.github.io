@@ -61,11 +61,6 @@ class GameScreen extends Phaser.Scene{
         gameState.tick++;
 
         if(gameState.tick == 10 && !gameState.gameOver){
-            if(gameState.player.position[gameState.player.position.length-1][0] == 20 || gameState.player.position[gameState.player.position.length-1][0] == -1 || gameState.player.position[gameState.player.position.length-1][1] == 20 || gameState.player.position[gameState.player.position.length-1][1] == -1){
-                gameState.gameOver = true;
-                this.add.text( 300, 300, 'Game Over', {fill: '#000000', fontSize: '20px'}).setOrigin(0.5, 0.5);
-                this.add.text( 300, 320, 'Score: '+gameState.score, {fill: '#000000', fontSize: '20px'}).setOrigin(0.5, 0.5);
-            }
 
             if(!gameState.ateApple){
                 gameState.board[gameState.player.position[0][0]][gameState.player.position[0][1]] = 0;
@@ -78,20 +73,39 @@ class GameScreen extends Phaser.Scene{
             }
 
             if(gameState.direction == 0){
-                gameState.player.position.push([gameState.player.position[gameState.player.position.length-1][0]-1, gameState.player.position[gameState.player.position.length-1][1]]);
-                gameState.lastMove = 0;
+                if(gameState.player.position[gameState.player.position.length-1][0] == 0){
+                    gameState.gameOver = true;
+                }else{
+                    gameState.player.position.push([gameState.player.position[gameState.player.position.length-1][0]-1, gameState.player.position[gameState.player.position.length-1][1]]);
+                    gameState.lastMove = 0;
+                }
             }
             else if(gameState.direction == 1){
-                gameState.player.position.push([gameState.player.position[gameState.player.position.length-1][0], gameState.player.position[gameState.player.position.length-1][1]+1]);
-                gameState.lastMove = 1;
+                if(gameState.player.position[gameState.player.position.length-1][1] == 19){
+                    gameState.gameOver = true;
+                }
+                else{
+                    gameState.player.position.push([gameState.player.position[gameState.player.position.length-1][0], gameState.player.position[gameState.player.position.length-1][1]+1]);
+                    gameState.lastMove = 1;
+                }
             }
             else if(gameState.direction == 2){
-                gameState.player.position.push([gameState.player.position[gameState.player.position.length-1][0]+1, gameState.player.position[gameState.player.position.length-1][1]]);
-                gameState.lastMove = 2;
+                if(gameState.player.position[gameState.player.position.length-1][0] == 19){
+                    gameState.gameOver = true;
+                }
+                else{
+                    gameState.player.position.push([gameState.player.position[gameState.player.position.length-1][0]+1, gameState.player.position[gameState.player.position.length-1][1]]);
+                    gameState.lastMove = 2;
+                }
             }
             else{
-                gameState.player.position.push([gameState.player.position[gameState.player.position.length-1][0], gameState.player.position[gameState.player.position.length-1][1]-1]);
-                gameState.lastMove = 3;
+                if(gameState.player.position[gameState.player.position.length-1][1] == 0){
+                    gameState.gameOver = true;
+                }
+                else{
+                    gameState.player.position.push([gameState.player.position[gameState.player.position.length-1][0], gameState.player.position[gameState.player.position.length-1][1]-1]);
+                    gameState.lastMove = 3;
+                }
             }
 
             gameState.player.render.push(this.add.rectangle(gameState.player.position[gameState.player.position.length-1][1]*30, gameState.player.position[gameState.player.position.length-1][0]*30, 30, 30, 0x3f8c5a).setOrigin(0, 0));
@@ -104,10 +118,6 @@ class GameScreen extends Phaser.Scene{
             }
 
             gameState.board[gameState.player.position[gameState.player.position.length-1][0]][gameState.player.position[[gameState.player.position.length-1]][1]] = 1;
-
-            if(gameState.player.position[gameState.player.position.length-1][0] == 20 || gameState.player.position[gameState.player.position.length-1][0] == -1 || gameState.player.position[gameState.player.position.length-1][1] == 20 || gameState.player.position[gameState.player.position.length-1][1] == -1){
-                gameState.gameOver = true;
-            }
 
             for(let i = 0; i < gameState.player.position.length-1; i++){
                 if(gameState.player.position[gameState.player.position.length-1][0] == gameState.player.position[i][0] && gameState.player.position[gameState.player.position.length-1][1] == gameState.player.position[i][1]){
