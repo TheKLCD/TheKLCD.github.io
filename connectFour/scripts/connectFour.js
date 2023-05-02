@@ -32,6 +32,17 @@ class GameScreen extends Phaser.Scene {
         gameState.turn = gameState.player1Start;
         gameState.redWinText = this.add.text(100, 50, 'Red Wins: '+gameState.redWins, {fill: '#000000', fontSize: '20px'}).setOrigin(0.5, 0.5);
         gameState.blackWinText = this.add.text(800, 50, 'Black Wins: '+gameState.blackWins, {fill: '#000000', fontSize: '20px'}).setOrigin(0.5, 0.5);
+        
+        
+        gameState.redBorder = this.add.rectangle(95, 95, 710, 610, 0xd42222).setOrigin(0, 0);
+        gameState.blackBorder = this.add.rectangle(95, 95, 710, 610, 0x000000).setOrigin(0, 0);
+
+        if(gameState.turn){
+            gameState.blackBorder.setVisible(false);
+        }
+        else{
+            gameState.redBorder.setVisible(false);
+        }
 
         this.add.rectangle(100, 100, 700, 600, 0x346eeb).setOrigin(0, 0)
 
@@ -82,7 +93,25 @@ class GameScreen extends Phaser.Scene {
                     
                 }
                 else if(checkDraw()){
-                    this.scene.stop('GameScreen');
+                    this.add.text(450, 50, 'Draw', {fill: '#000000', fontSize: '20px'}).setOrigin(0.5, 0.5);
+
+                    for(let j = 0; j < 7; j++){
+                        gameState.input[j].destroy();
+                    }
+                    this.add.text(450, 750, 'Click to Play Again', {fill: '#000000', fontSize: '20px'}).setOrigin(0.5, 0.5);
+                    this.input.on('pointerup', () => {
+                        this.scene.stop('GameScreen');
+                        this.scene.start('StartScreen');
+                    })
+                }
+
+                if(gameState.turn){
+                    gameState.redBorder.setVisible(false);
+                    gameState.blackBorder.setVisible(true);
+                }
+                else{
+                   gameState.redBorder.setVisible(true);
+                   gameState.blackBorder.setVisible(false);
                 }
 
                 gameState.turn = !gameState.turn;
@@ -144,8 +173,8 @@ function checkWin(){
 }
 
 function checkDraw(){
-    for(let i = 0; i < 5; i++){
-        for(let j = 0; j < 6; j++){
+    for(let i = 0; i < 6; i++){
+        for(let j = 0; j < 7; j++){
             if(gameState.board[i][j] != true && gameState.board[i][j] != false){
                 return false;
             }
