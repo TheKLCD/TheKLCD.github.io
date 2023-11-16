@@ -1,36 +1,36 @@
 html {
-    height: 150%;
-    background-image: linear-gradient(to bottom right, #251a38, #000000);
-    background-size: cover;
+  height: 150%;
+  background-image: linear-gradient(to bottom right, #251a38, #000000);
+  background-size: cover;
+  color: white;
 }
 
 a:link, a:visited{
-    color: #6168cf;
-    text-decoration: none;
+  color: #6168cf;
+  text-decoration: none;
 }
 
 a:hover{
-    color: orange;
+  color: orange;
 }
 
 a:active{
-    color: yellow;
+  color: yellow;
 }
 
 figcaption {
-  color: white;
-  font-size: 25px;
+font-size: 25px;
 }
 
 ul {
-  list-style: none; /* Remove default bullets */
+list-style: none; /* Remove default bullets */
 }
 
 ul li::before {
-  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-  color: white; /* Change the color */
-  font-weight: bold; /* If you want it to be bold */
-  display: inline-block; /* Needed to add space between the bullet and the text */
-  width: 1em; /* Also needed for space (tweak if needed) */
-  margin-left: -1em; /* Also needed for space (tweak if needed) */
+content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+color: white; /* Change the color */
+font-weight: bold; /* If you want it to be bold */
+display: inline-block; /* Needed to add space between the bullet and the text */
+width: 1em; /* Also needed for space (tweak if needed) */
+margin-left: -1em; /* Also needed for space (tweak if needed) */
 }
