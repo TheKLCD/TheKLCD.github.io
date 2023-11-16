@@ -1,6 +1,7 @@
 function calculate(){
   var inputFeild = document.getElementById("inputFeild");
   var outputFeild = document.getElementById("output");
+  var includeSymbols = document.getElementById("includeSymbols").checked;
   
   if(outputFeild.style.display === "none"){
     outputFeild.style.display = "block";
@@ -83,33 +84,70 @@ function calculate(){
       values.push(value);
       
       //Format the data for selling
-			var price = "\""+value+":tickets:\",";
-			var wl = "\"♡"+wish+"\",";
+      var price;
+      
+      if(includeSymbols){
+        price = "\""+value+":tickets:\",";
+      }
+			else{
+			  price = "\""+value+"\",";
+			}
+			
+			var wl;
+			
+			if(includeSymbols){
+        wl = "\"♡"+wish+"\",";
+      }
+			else{
+			  wl = "\""+wish+"\",";
+			}
+			
 			var code = "\""+card[0].substring(1)+"\",";
 
 			var quality = "";
 			
-			//☆ ★
-			switch(card[5]){
-				case "0":
-					quality = "\"☆☆☆☆\",";
-					break;
-				case "1":
-					quality = "\"★☆☆☆\",";
-					break;
-				case "2":
-					quality = "\"★★☆☆\",";
-					break;
-				case "3":
-					quality = "\"★★★☆\",";
-					break;
-				case "4":
-					quality = "\"★★★★\",";
-					break;
+			if(includeSymbols){
+  			//☆ ★
+  			switch(card[5]){
+  				case "0":
+  					quality = "\"☆☆☆☆\",";
+  					break;
+  				case "1":
+  					quality = "\"★☆☆☆\",";
+  					break;
+  				case "2":
+  					quality = "\"★★☆☆\",";
+  					break;
+  				case "3":
+  					quality = "\"★★★☆\",";
+  					break;
+  				case "4":
+  					quality = "\"★★★★\",";
+  					break;
+  			}
 			}
-
-			var number = "\"#"+print+"\",";
-			var ed = "\"◈"+edition+"\",";
+			else{
+			  quality = "\""+card[5]+"\",";
+			}
+			
+			var number;
+      
+      if(includeSymbols){
+        number = "\"#"+print+"\",";
+      }
+			else{
+			  number = "\""+print+"\",";
+			}
+      
+      var ed;
+      
+      if(includeSymbols){
+        ed = "\"◈"+edition+"\",";
+      }
+			else{
+			  ed = "\""+edition+"\",";
+			}
+      
 			var series = "\""+card[4]+"\",";
 			var character = "\""+card[3]+"\"\n";
 			
@@ -149,5 +187,4 @@ function calculate(){
   }
   
   reader.readAsText(file);
-  
 }
